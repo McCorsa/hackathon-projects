@@ -1,9 +1,14 @@
 <script lang="ts">
+    import type { Team } from "@prisma/client";
+    import type { PageData } from "./$types";
+    export let data: PageData
+
     import { slide } from "svelte/transition";
     let name = "";
     let pword = "";
     let signedIn = false;
-    let teams: string[] = [];
+    // let teams: string[] = [];
+    let teams: Team[] = data.teams;
     let filter = "";
     let filtering = false;
     let creatingTeam = false;
@@ -18,9 +23,9 @@
     }
 
     function createTeam() {
-        teams = [...teams, newTeam]
-        creatingTeam = false;
-        newTeam = "";
+        // teams = [...teams, newTeam]
+        // creatingTeam = false;
+        // newTeam = "";
     }
 </script>
 
@@ -84,11 +89,11 @@
                 <input type="text" class="input input-bordered w-full" placeholder="Filter" bind:value={filter} autofocus>
             </div>
         {/if}
-        {#each teams.filter(val => val.toLowerCase().startsWith(filter.toLowerCase())) as team}
+        {#each teams.filter(val => val.name.toLowerCase().startsWith(filter.toLowerCase())) as team}
             <div class="collapse collapse-plus bg-base-300 hover:bg-base-200 border border-base-100 transition">
                 <input type="radio" name="my-accordion-4" /> 
                 <div class="collapse-title text-lg font-bold">
-                    {team}
+                    {team.name} ({team.id})
                 </div>
                 <div class="collapse-content"> 
                     <p>hello</p>
