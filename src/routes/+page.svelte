@@ -1,17 +1,15 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
-
     let name = "";
     let pword = "";
     let signedIn = false;
     let teams: string[] = [];
-    // let filteredTeams = teams;
     let filter = "";
     let filtering = false;
     let creatingTeam = false;
     let newTeam = "";
 
-    function login() {
+    async function login() {
         signedIn = true;
     }
 
