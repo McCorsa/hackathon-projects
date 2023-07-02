@@ -1,0 +1,25 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:../dev.db"
+}
+
+model User {
+    id       Int          @id @default(autoincrement())
+    name     String
+    password String?
+    teams    TeamMember[]
+}
+
+model Team {
+    id      Int          @id @default(autoincrement())
+    name    String
+    members TeamMember[]
+}
+
+model TeamMember {
+    teamMemberId Int  @id @default(autoincrement())
+    User         User @relation(fields: [userId], references: [id])
+    userId       Int
+    Team         Team @relation(fields: [teamId], references: [id])
+    teamId       Int
+}
