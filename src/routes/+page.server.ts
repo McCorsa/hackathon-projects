@@ -28,5 +28,8 @@ export const actions = {
             console.log(newUser);
             cookies.set('userId', newUser.id.toString());
         }
+    },
+    logout: async ({ cookies, request }) => {
+        cookies.delete('userId');
     }
 } satisfies Actions;
