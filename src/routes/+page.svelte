@@ -7,6 +7,7 @@
 
     import { slide } from "svelte/transition";
     let signingIn = false;
+    let signingOut = false;
     // let teams: string[] = [];
     let teams: Team[] = data.teams;
     let filter = "";
@@ -20,9 +21,15 @@
 >
     <span class="grow text-white">Winter Hackathon</span>
     {#if data.user}
-        <form method="post" action="?/logout" use:enhance>
+        <form method="post" action="?/logout" use:enhance={() => {
+            signingOut = true;
+            return async ({result, update}) => {
+                await update()
+                signingOut = false;
+            }
+        }}>
             <span class="text-white text-sm">Welcome {data.user.name}</span>
-            <button class="btn btn-xs" type="submit">Logout</button>
+            <button class="btn btn-sm" type="submit" disabled={signingOut}>Logout</button>
         </form>
     {:else}
         <form
@@ -55,7 +62,7 @@
                 placeholder="Password"
                 disabled={signingIn}
             />
-            <button type="submit" class="btn btn-sm">Submit</button>
+            <button type="submit" class="btn btn-sm" disabled={signingIn}>Submit</button>
         </form>
     {/if}
 </header>
