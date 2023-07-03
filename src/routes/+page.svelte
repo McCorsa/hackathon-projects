@@ -174,7 +174,12 @@
                     {team.name} ({team.id})
                 </div>
                 <div class="collapse-content">
-                    <p>hello</p>
+                    <h3 class="text-lg font-bold">Team Members</h3>
+                    <ul class="list-item">
+                        {#each team.members as member}
+                            <li>{member.User.name}</li>
+                        {/each}
+                    </ul>
                 </div>
             </div>
         {/each}
