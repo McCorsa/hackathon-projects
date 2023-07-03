@@ -21,12 +21,19 @@ export const actions = {
 
         const user = await prisma.user.findFirst({ where: { name: name } });
         if (user) {
-            cookies.set('userId', user.id.toString());
+            if (password == user.password) {
+                cookies.set('userId', user.id.toString());
+                return {success: true, newUser: false}
+            }
+            else {
+                return {success: false}
+            }
         }
         else {
             const newUser = await prisma.user.create({ data: { name: name || "", password: password } });
             console.log(newUser);
             cookies.set('userId', newUser.id.toString());
+            return {success: true, newUser: false}
         }
     },
     logout: async ({ cookies, request }) => {
