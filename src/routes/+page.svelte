@@ -29,7 +29,15 @@
             class="flex flex-col md:flex-row gap-1 w-full md:w-auto"
             method="post"
             action="?/login"
-            use:enhance
+            use:enhance={() => {
+                signingIn = true;
+                return async({result, update}) => {
+                    await update()
+                    if(result) {
+                        signingIn = false;
+                    }
+                }
+            }}
         >
             <input
                 type="text"
@@ -37,6 +45,7 @@
                 id="name"
                 class="input input-sm"
                 placeholder="Name"
+                disabled={signingIn}
             />
             <input
                 type="password"
@@ -44,8 +53,9 @@
                 id="pword"
                 class="input input-sm"
                 placeholder="Password"
+                disabled={signingIn}
             />
-            <button type="submit" class="btn btn-sm" on:click={() => signingIn = true}>Submit</button>
+            <button type="submit" class="btn btn-sm">Submit</button>
         </form>
     {/if}
 </header>
