@@ -1,7 +1,8 @@
 <script lang="ts">
     import type { Team } from "@prisma/client";
-    import type { PageData } from "./$types";
-    export let data: PageData
+    import type { PageData, ActionData } from "./$types";
+    export let data: PageData;
+    export let form: ActionData;
 
     import { slide } from "svelte/transition";
     let name = "";
@@ -31,11 +32,11 @@
 
 <header class="bg-primary p-2 flex flex-col md:flex-row flex-wrap items-center gap-1">
     <span class="grow text-white">Winter Hackathon</span>
-    {#if signedIn}
-    <span class="text-white text-xs">Welcome {name}</span>
+    {#if data.user}
+    <span class="text-white text-xs">Welcome {data.user.name}</span>
     <button class="btn btn-xs" on:click={logout}>Logout</button>
     {:else}
-    <form class="flex flex-col md:flex-row gap-1 w-full md:w-auto" on:submit|preventDefault={login}>
+    <form class="flex flex-col md:flex-row gap-1 w-full md:w-auto" method="post" action="?/login">
         <input type="text" name="name" id="name" bind:value={name} class="input input-sm" placeholder="Name">
         <input type="password" name="pword" id="pword" bind:value={pword} class="input input-sm" placeholder="Password">
         <button type="submit" class="btn btn-sm">Submit</button>
