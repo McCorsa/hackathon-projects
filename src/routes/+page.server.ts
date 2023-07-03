@@ -7,10 +7,10 @@ export const load = (async ({ cookies }) => {
     const user = await prisma.user.findFirst({ where: { id: parseInt(cookies.get("userId") || "0") } })
 
     // 1.
-    const response = await prisma.team.findMany()
+    const teams = await prisma.team.findMany()
 
     // 2.
-    return { teams: response, user: user };
+    return { teams: teams, user: user };
 }) satisfies PageServerLoad;
 
 export const actions = {
@@ -33,10 +33,22 @@ export const actions = {
             const newUser = await prisma.user.create({ data: { name: name || "", password: password } });
             console.log(newUser);
             cookies.set('userId', newUser.id.toString());
-            return {success: true, newUser: false}
+            return {signInSuccess: true, newUser: false}
         }
     },
     logout: async ({ cookies, request }) => {
         cookies.delete('userId');
+    },
+    newTeam: async ({ cookies, request }) => {
+        const data = await request.formData();
+        const teamName = data.get('name')?.toString();
+        const teamCheck = await prisma.team.findFirst({where: {name: teamName}});
+        if (teamCheck) {
+            return {newTeamSuccess: false}
+        }
+        else {
+            const newTeam = await prisma.team.create({data: {name: teamName || ""}})
+            return {newTeamSuccess: true}
+        }
     }
 } satisfies Actions;

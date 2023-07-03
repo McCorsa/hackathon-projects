@@ -9,7 +9,7 @@
     let signingIn = false;
     let signingOut = false;
     // let teams: string[] = [];
-    let teams: Team[] = data.teams;
+    $: teams = data.teams;
     let filter = "";
     let filtering = false;
     let creatingTeam = false;
@@ -68,7 +68,7 @@
 </header>
 
 <main class="flex flex-col gap-2 p-6 max-w-screen-md mx-auto">
-    {#if form?.success == true}
+    {#if form?.signInSuccess == true}
         {#if form?.newUser}
             <div class="alert alert-success">
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -80,10 +80,22 @@
                 <span>Welcome back, {data.user?.name}!</span>
             </div>
         {/if}
-    {:else if form?.success == false}
+    {:else if form?.signInSuccess == false}
         <div class="alert alert-error">
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <span>Incorrect password.</span>
+        </div>
+    {/if}
+
+    {#if form?.newTeamSuccess == true}
+        <div class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Team successfully created</span>
+        </div>
+    {:else if form?.newTeamSuccess == false}
+        <div class="alert alert-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Team creation unsuccessful. Does it already exist?</span>
         </div>
     {/if}
 
@@ -122,12 +134,16 @@
             <form
                 class="flex flex-row px-2 py-1 gap-1 bg-base-300 rounded-xl"
                 transition:slide
+                method="post"
+                action="?/newTeam"
+                use:enhance
             >
                 <!-- svelte-ignore a11y-autofocus -->
                 <input
                     class="input grow"
                     placeholder="New Team Name"
-                    bind:value={newTeam}
+                    id="name"
+                    name="name"
                     autofocus
                 />
                 <button class="btn btn-success" type="submit">Create</button>
