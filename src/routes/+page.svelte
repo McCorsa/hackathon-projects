@@ -136,6 +136,7 @@
                 class="flex flex-row px-2 py-1 gap-1 bg-base-300 rounded-xl"
                 transition:slide
             >
+                <!-- svelte-ignore a11y-autofocus -->
                 <input
                     class="input grow"
                     placeholder="New Team Name"
@@ -147,6 +148,7 @@
         {/if}
         {#if filtering}
             <div class="px-2 py-1 bg-base-300 rounded-xl" transition:slide>
+                <!-- svelte-ignore a11y-autofocus -->
                 <input
                     type="text"
                     class="input input-bordered w-full"
