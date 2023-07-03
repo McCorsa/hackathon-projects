@@ -47,7 +47,7 @@ export const actions = {
             return { newTeamSuccess: false }
         }
         else {
-            const newTeam = await prisma.team.create({ data: { name: teamName || "" } })
+            const newTeam = await prisma.team.create({ data: { name: teamName || "", members: { create: { userId: parseInt(cookies.get('userId') || "0") } } } })
             return { newTeamSuccess: true }
         }
     }

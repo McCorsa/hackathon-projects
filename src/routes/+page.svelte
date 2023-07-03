@@ -132,7 +132,7 @@
                 {/if}
             {/if}
         </div>
-        {#if creatingTeam}
+        {#if creatingTeam && data.user}
             <form
                 class="flex flex-row px-2 py-1 gap-1 bg-base-300 rounded-xl"
                 transition:slide
