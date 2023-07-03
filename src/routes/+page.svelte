@@ -6,29 +6,13 @@
     export let form: ActionData;
 
     import { slide } from "svelte/transition";
-    let name = "";
-    let pword = "";
-    let signedIn = false;
+    let signingIn = false;
     // let teams: string[] = [];
     let teams: Team[] = data.teams;
     let filter = "";
     let filtering = false;
     let creatingTeam = false;
     let newTeam = "";
-
-    async function login() {
-        signedIn = true;
-    }
-
-    function logout() {
-        signedIn = false;
-    }
-
-    function createTeam() {
-        // teams = [...teams, newTeam]
-        // creatingTeam = false;
-        // newTeam = "";
-    }
 </script>
 
 <header
@@ -51,7 +35,6 @@
                 type="text"
                 name="name"
                 id="name"
-                bind:value={name}
                 class="input input-sm"
                 placeholder="Name"
             />
@@ -59,11 +42,10 @@
                 type="password"
                 name="pword"
                 id="pword"
-                bind:value={pword}
                 class="input input-sm"
                 placeholder="Password"
             />
-            <button type="submit" class="btn btn-sm">Submit</button>
+            <button type="submit" class="btn btn-sm" on:click={() => signingIn = true}>Submit</button>
         </form>
     {/if}
 </header>
@@ -124,7 +106,6 @@
             <form
                 class="flex flex-row px-2 py-1 gap-1 bg-base-300 rounded-xl"
                 transition:slide
-                on:submit={createTeam}
             >
                 <input
                     class="input grow"
