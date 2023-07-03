@@ -116,18 +116,20 @@
                     on:click={() => (filtering = true)}>Filter</button
                 >
             {/if}
-            {#if creatingTeam}
-                <button
-                    class="btn btn-error btn-sm"
-                    on:click={() => (creatingTeam = false)}>Cancel</button
-                >
-            {:else}
-                <button
-                    class="btn btn-success btn-sm"
-                    on:click={() => {
-                        creatingTeam = true;
-                    }}>New Team</button
-                >
+            {#if data.user}
+                {#if creatingTeam}
+                    <button
+                        class="btn btn-error btn-sm"
+                        on:click={() => (creatingTeam = false)}>Cancel</button
+                    >
+                {:else}
+                    <button
+                        class="btn btn-success btn-sm"
+                        on:click={() => {
+                            creatingTeam = true;
+                        }}>New Team</button
+                    >
+                {/if}
             {/if}
         </div>
         {#if creatingTeam}
