@@ -50,5 +50,22 @@ export const actions = {
             const newTeam = await prisma.team.create({ data: { name: teamName || "", members: { create: { userId: parseInt(cookies.get('userId') || "0") } } } })
             return { newTeamSuccess: true }
         }
+    },
+    joinTeam: async ({ cookies, request }) => {
+        const data = await request.formData();
+        const teamId = parseInt(data.get('teamId')?.toString() || "0");
+        const userId = parseInt(cookies.get('userId') || "0");
+        console.log(teamId, cookies.get('userId'));
+        // perform action to add current user to the team
+        const newMember = await prisma.teamMember.create({data: {teamId: teamId, userId: userId}})
+    },
+    leaveTeam: async ({ cookies, request }) => {
+        const data = await request.formData();
+        const teamId = parseInt(data.get('teamId')?.toString() || "0");
+        const userId = parseInt(cookies.get('userId') || "0");
+        console.log(teamId, cookies.get('userId'));
+        // perform action to add current user to the team
+        const delMember = await prisma.teamMember.findFirst({where: {teamId: teamId, userId: userId}});
+        await prisma.teamMember.delete({where: {teamMemberId: delMember?.teamMemberId}});
     }
 } satisfies Actions;

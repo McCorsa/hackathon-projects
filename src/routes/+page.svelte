@@ -163,6 +163,7 @@
                 />
             </div>
         {/if}
+        <!-- TODO: Replace the accordions with a table, or something better suited -->
         {#each teams.filter((val) => val.name
                 .toLowerCase()
                 .startsWith(filter.toLowerCase())) as team}
@@ -170,14 +171,29 @@
                 class="collapse collapse-plus bg-base-300 hover:bg-base-200 border border-base-100 transition"
             >
                 <input type="radio" name="my-accordion-4" />
-                <div class="collapse-title text-lg font-bold">
-                    {team.name} ({team.id})
+                <div class="collapse-title text-lg font-bold flex flex-row items-center gap-1">
+                    <span class="grow">{team.name} ({team.id}) (user id is {data.user?.id})</span>
+                    {#if data.user }
+                        {#if team.members.find((user) => user.userId == data.user?.id) }
+                            <div class="badge badge-success">Joined</div>
+                            <form method="post" action="?/leaveTeam">
+                                <input type="text" bind:value={team.id} class="hidden" id="teamId" name="teamId">
+                                <button class="btn btn-warning btn-sm">Leave</button>
+                            </form>
+                        {:else}
+                            <form method="post" action="?/joinTeam">
+                                <input type="text" bind:value={team.id} class="hidden" id="teamId" name="teamId">
+                                <button class="btn btn-primary btn-sm" type="submit">Join</button>
+                            </form>
+                        {/if}
+                    {/if}
                 </div>
                 <div class="collapse-content">
                     <h3 class="text-lg font-bold">Team Members</h3>
+                    {team.members.find((user) => user.User.id == data.user?.id)}
                     <ul class="list-item">
                         {#each team.members as member}
-                            <li>{member.User.name}</li>
+                            <li>{member.User.name} ({member.User.id}, {member.userId == data.user?.id})</li>
                         {/each}
                     </ul>
                 </div>
