@@ -61,26 +61,6 @@
 </header>
 
 <main class="flex flex-col gap-2 p-6 max-w-screen-md mx-auto">
-    <!-- <section class="rounded bg-base-200 divide-y-2 divide divide-gray-400">
-        <div class="flex flex-row p-3 items-center">
-            <h2 class="text-lg font-bold grow">Teams to Join</h2>
-            {#if creatingTeam}
-                <button class="btn btn-error btn-sm" on:click={() => creatingTeam = false}>Cancel</button>
-            {:else}
-                <button class="btn btn-success btn-sm" on:click={() => creatingTeam = true}>New Team</button>
-            {/if}
-        </div>
-        {#if creatingTeam}
-            <div class="flex flex-row px-2 py-1 gap-1" transition:slide>
-                <input class="input input-sm grow" placeholder="New Team Name" bind:value={newTeam}>
-                <button class="btn btn-success btn-sm" on:click={createTeam}>Create</button>
-            </div>
-        {/if}
-        {#each teams as team}
-            <p class="hover:bg-yellow-300 px-3 py-1">{team}</p>
-        {/each}
-    </section> -->
-
     {#if form?.success == true}
         {#if form?.newUser}
             <div class="alert alert-success">
