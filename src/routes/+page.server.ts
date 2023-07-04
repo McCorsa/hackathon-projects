@@ -23,17 +23,17 @@ export const actions = {
         if (user) {
             if (password == user.password) {
                 cookies.set('userId', user.id.toString());
-                return { success: true, newUser: false }
+                return { signInSuccess: true, newUser: false }
             }
             else {
-                return { success: false }
+                return { signInSuccess: false }
             }
         }
         else {
             const newUser = await prisma.user.create({ data: { name: name || "", password: password } });
             console.log(newUser);
             cookies.set('userId', newUser.id.toString());
-            return { signInSuccess: true, newUser: false }
+            return { signInSuccess: true, newUser: true }
         }
     },
     logout: async ({ cookies, request }) => {

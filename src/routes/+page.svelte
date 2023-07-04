@@ -206,7 +206,7 @@
         </div>
         {#if creatingTeam && data.user}
             <form
-                class="flex flex-row px-2 py-1 gap-1 bg-base-300 rounded-xl"
+                class="flex flex-row px-2 py-1 mb-3 gap-3 bg-base-300 rounded-xl"
                 transition:slide
                 method="post"
                 action="?/newTeam"
