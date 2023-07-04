@@ -21,15 +21,21 @@
 >
     <span class="grow text-white">Winter Hackathon</span>
     {#if data.user}
-        <form method="post" action="?/logout" use:enhance={() => {
-            signingOut = true;
-            return async ({result, update}) => {
-                await update()
-                signingOut = false;
-            }
-        }}>
+        <form
+            method="post"
+            action="?/logout"
+            use:enhance={() => {
+                signingOut = true;
+                return async ({ result, update }) => {
+                    await update();
+                    signingOut = false;
+                };
+            }}
+        >
             <span class="text-white text-sm">Welcome {data.user.name}</span>
-            <button class="btn btn-sm" type="submit" disabled={signingOut}>Logout</button>
+            <button class="btn btn-sm" type="submit" disabled={signingOut}
+                >Logout</button
+            >
         </form>
     {:else}
         <form
@@ -38,12 +44,12 @@
             action="?/login"
             use:enhance={() => {
                 signingIn = true;
-                return async({result, update}) => {
-                    await update()
-                    if(result) {
+                return async ({ result, update }) => {
+                    await update();
+                    if (result) {
                         signingIn = false;
                     }
-                }
+                };
             }}
         >
             <input
@@ -62,7 +68,9 @@
                 placeholder="Password"
                 disabled={signingIn}
             />
-            <button type="submit" class="btn btn-sm" disabled={signingIn}>Submit</button>
+            <button type="submit" class="btn btn-sm" disabled={signingIn}
+                >Submit</button
+            >
         </form>
     {/if}
 </header>
@@ -71,30 +79,88 @@
     {#if form?.signInSuccess == true}
         {#if form?.newUser}
             <div class="alert alert-success">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Welcome to the Hackathon, {data.user?.name}! You can now log in with your name and password.</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stroke-current shrink-0 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                >
+                <span
+                    >Welcome to the Hackathon, {data.user?.name}! You can now
+                    log in with your name and password.</span
+                >
             </div>
         {:else}
             <div class="alert alert-success">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stroke-current shrink-0 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    /></svg
+                >
                 <span>Welcome back, {data.user?.name}!</span>
             </div>
         {/if}
     {:else if form?.signInSuccess == false}
         <div class="alert alert-error">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                /></svg
+            >
             <span>Incorrect password.</span>
         </div>
     {/if}
 
     {#if form?.newTeamSuccess == true}
         <div class="alert alert-success">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                /></svg
+            >
             <span>Team successfully created</span>
         </div>
     {:else if form?.newTeamSuccess == false}
         <div class="alert alert-error">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                /></svg
+            >
             <span>Team creation unsuccessful. Does it already exist?</span>
         </div>
     {/if}
@@ -163,41 +229,62 @@
                 />
             </div>
         {/if}
-        <!-- TODO: Replace the accordions with a table, or something better suited -->
-        {#each teams.filter((val) => val.name
-                .toLowerCase()
-                .startsWith(filter.toLowerCase())) as team}
-            <div
-                class="collapse collapse-plus bg-base-300 hover:bg-base-200 border border-base-100 transition"
-            >
-                <input type="radio" name="my-accordion-4" />
-                <div class="collapse-title text-lg font-bold flex flex-row items-center gap-1">
-                    <span class="grow">{team.name} ({team.id}) (user id is {data.user?.id})</span>
-                    {#if data.user }
-                        {#if team.members.find((user) => user.userId == data.user?.id) }
-                            <div class="badge badge-success">Joined</div>
-                            <form method="post" action="?/leaveTeam">
-                                <input type="text" bind:value={team.id} class="hidden" id="teamId" name="teamId">
-                                <button class="btn btn-warning btn-sm">Leave</button>
-                            </form>
-                        {:else}
-                            <form method="post" action="?/joinTeam">
-                                <input type="text" bind:value={team.id} class="hidden" id="teamId" name="teamId">
-                                <button class="btn btn-primary btn-sm" type="submit">Join</button>
-                            </form>
-                        {/if}
-                    {/if}
+
+        <div class="grid md:grid-cols-3 gap-2">
+            {#each teams.filter((val) => val.name
+                    .toLowerCase()
+                    .startsWith(filter.toLowerCase())) as team}
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h2 class="card-title">
+                            {team.name}
+                            {#if team.members.find((user) => user.userId == data.user?.id)}
+                                <div class="badge badge-success">Joined</div>
+                            {/if}
+                        </h2>
+                        <h3 class="fond-semibold">Team Members</h3>
+                        <ul class="list-disc ml-4">
+                            {#each team.members as member}
+                                <li>
+                                    {member.User.name}
+                                </li>
+                            {/each}
+                        </ul>
+                        <div class="card-actions">
+                            {#if data.user}
+                                {#if team.members.find((user) => user.userId == data.user?.id)}
+                                    <form method="post" action="?/leaveTeam">
+                                        <input
+                                            type="text"
+                                            bind:value={team.id}
+                                            class="hidden"
+                                            id="teamId"
+                                            name="teamId"
+                                        />
+                                        <button class="btn btn-warning btn-sm"
+                                            >Leave</button
+                                        >
+                                    </form>
+                                {:else}
+                                    <form method="post" action="?/joinTeam">
+                                        <input
+                                            type="text"
+                                            bind:value={team.id}
+                                            class="hidden"
+                                            id="teamId"
+                                            name="teamId"
+                                        />
+                                        <button
+                                            class="btn btn-primary btn-sm"
+                                            type="submit">Join</button
+                                        >
+                                    </form>
+                                {/if}
+                            {/if}
+                        </div>
+                    </div>
                 </div>
-                <div class="collapse-content">
-                    <h3 class="text-lg font-bold">Team Members</h3>
-                    {team.members.find((user) => user.User.id == data.user?.id)}
-                    <ul class="list-item">
-                        {#each team.members as member}
-                            <li>{member.User.name} ({member.User.id}, {member.userId == data.user?.id})</li>
-                        {/each}
-                    </ul>
-                </div>
-            </div>
-        {/each}
+            {/each}
+        </div>
     </section>
 </main>
