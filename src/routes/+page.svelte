@@ -16,68 +16,73 @@
     let newTeam = "";
 </script>
 
-<header
-    class="bg-primary p-2 flex flex-col md:flex-row flex-wrap items-center gap-1"
->
-    <span class="grow text-white">Winter Hackathon</span>
-    {#if data.user}
-        <form
-            method="post"
-            action="?/logout"
-            use:enhance={() => {
-                signingOut = true;
-                return async ({ result, update }) => {
-                    await update();
-                    signingOut = false;
-                };
-            }}
-        >
-            <span class="text-white text-sm">Welcome {data.user.name}</span>
-            <button class="btn btn-sm" type="submit" disabled={signingOut}
-                >Logout</button
+<header class="bg-primary">
+    <div
+        class="max-w-screen-md mx-auto p-2 flex flex-col md:flex-row flex-wrap items-center gap-1"
+    >
+        <span class="grow text-white">Winter Hackathon</span>
+        {#if data.user}
+            <form
+                method="post"
+                action="?/logout"
+                use:enhance={() => {
+                    signingOut = true;
+                    return async ({ result, update }) => {
+                        await update();
+                        signingOut = false;
+                    };
+                }}
             >
-        </form>
-    {:else}
-        <form
-            class="flex flex-col md:flex-row gap-1 w-full md:w-auto"
-            method="post"
-            action="?/login"
-            use:enhance={() => {
-                signingIn = true;
-                return async ({ result, update }) => {
-                    await update();
-                    if (result) {
-                        signingIn = false;
-                    }
-                };
-            }}
-        >
-            <input
-                type="text"
-                name="name"
-                id="name"
-                class="input input-sm"
-                placeholder="Name"
-                disabled={signingIn}
-            />
-            <input
-                type="password"
-                name="pword"
-                id="pword"
-                class="input input-sm"
-                placeholder="Password"
-                disabled={signingIn}
-            />
-            <button type="submit" class="btn btn-sm" disabled={signingIn}
-                >Submit</button
+                <span class="text-white text-sm">Welcome {data.user.name}</span>
+                <button class="btn btn-sm" type="submit" disabled={signingOut}
+                    >Logout</button
+                >
+            </form>
+        {:else}
+            <form
+                class="flex flex-col md:flex-row gap-1 w-full md:w-auto"
+                method="post"
+                action="?/login"
+                use:enhance={() => {
+                    signingIn = true;
+                    return async ({ result, update }) => {
+                        await update();
+                        if (result) {
+                            signingIn = false;
+                        }
+                    };
+                }}
             >
-        </form>
-    {/if}
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="input input-sm"
+                    placeholder="Name"
+                    disabled={signingIn}
+                />
+                <input
+                    type="password"
+                    name="pword"
+                    id="pword"
+                    class="input input-sm"
+                    placeholder="Password"
+                    disabled={signingIn}
+                />
+                <button type="submit" class="btn btn-sm" disabled={signingIn}
+                    >Submit</button
+                >
+            </form>
+        {/if}
+    </div>
 </header>
 
 {#if !data.user}
-    <p class="w-screen bg-info text-info-content font-bold text-sm text-center p-1">
-        First time logging in? Enter your name and a password unique to you. You can then use this to login next time.
+    <p
+        class="w-screen bg-info text-info-content font-bold text-sm text-center p-1"
+    >
+        First time logging in? Enter your name and a password unique to you. You
+        can then use this to login next time.
     </p>
 {/if}
 
@@ -249,13 +254,17 @@
                             {/if}
                         </h2>
                         <h3 class="font-semibold">Team Members</h3>
-                        <ul class="list-disc ml-4">
-                            {#each team.members as member}
-                                <li>
-                                    {member.User.name}
-                                </li>
-                            {/each}
-                        </ul>
+                        {#if team.members.length > 0}
+                            <ul class="list-disc ml-4">
+                                {#each team.members as member}
+                                    <li>
+                                        {member.User.name}
+                                    </li>
+                                {/each}
+                            </ul>
+                        {:else}
+                            <p>Team is empty.</p>
+                        {/if}
                         <div class="card-actions">
                             {#if data.user}
                                 {#if team.members.find((user) => user.userId == data.user?.id)}
