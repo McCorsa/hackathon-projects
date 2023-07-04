@@ -1,38 +1,44 @@
-# create-svelte
+# Code Network Hackathon Projects Registration
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This site will allow teams at the 2023 Code Network Winter Hackathon to register and join their teams. This will provide a level of accountability for everyone involved and will streamline check-ins.
 
-## Creating a project
+## Technologies Used
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Svelte(Kit)
+- Tailwind CSS
+- Daisy UI
+- Prisma ORM
+- Sqlite *(for now)*
+
+## Roadmap
+- [x] Add Prisma and schema
+- [x] List and filter registered teams
+- [x] Sign-in and -out (when2meet style)
+- [x] Create team
+- [x] Join and leave team
+- [ ] Host this website (Vercel?)
+- [ ] Finalise theming
+- [ ] Set up a hosted database
+
+## Running the Project
+
+After you have downloaded this project, open your command line and run the following instructions:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+# 1. Install npm dependencies
+npm install
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# 2. Run Prisma migrations
+npm run migrate
+
+# 3. Run the application
+npm run dev
 ```
 
-## Developing
+I would advise that you should have the dev server running while you are working on the project as any changes to the types will be reflected in Intellisense only while the dev server is running.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Each other time, you can start the dev server by running the command:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
