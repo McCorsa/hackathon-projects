@@ -75,6 +75,12 @@
     {/if}
 </header>
 
+{#if !data.user}
+    <p class="w-screen bg-warning text-warning-content text-sm text-center p-1">
+        First time logging in? Enter your name and a password unique to you. You can then use this to login next time.
+    </p>
+{/if}
+
 <main class="flex flex-col gap-2 p-6 max-w-screen-md mx-auto">
     {#if form?.signInSuccess == true}
         {#if form?.newUser}
@@ -230,7 +236,7 @@
             </div>
         {/if}
 
-        <div class="grid md:grid-cols-3 gap-2">
+        <div class="grid md:grid-cols-2 gap-2">
             {#each teams.filter((val) => val.name
                     .toLowerCase()
                     .startsWith(filter.toLowerCase())) as team}
@@ -242,7 +248,7 @@
                                 <div class="badge badge-success">Joined</div>
                             {/if}
                         </h2>
-                        <h3 class="fond-semibold">Team Members</h3>
+                        <h3 class="font-semibold">Team Members</h3>
                         <ul class="list-disc ml-4">
                             {#each team.members as member}
                                 <li>
