@@ -76,7 +76,7 @@
 </header>
 
 {#if !data.user}
-    <p class="w-screen bg-warning text-warning-content text-sm text-center p-1">
+    <p class="w-screen bg-info text-info-content font-bold text-sm text-center p-1">
         First time logging in? Enter your name and a password unique to you. You can then use this to login next time.
     </p>
 {/if}
