@@ -16,11 +16,14 @@
     let newTeam = "";
 </script>
 
-<header class="bg-primary">
+<header class="bg-accent">
     <div
         class="max-w-screen-md mx-auto p-2 flex flex-col md:flex-row flex-wrap items-center gap-1"
     >
-        <span class="grow text-white">Winter Hackathon</span>
+        <span class="grow text-white">
+            <span class="text-primary font-bold">{"{"}</span>cn<span class="text-primary font-bold">{"}"}</span>
+            Winter Hackathon
+        </span>
         {#if data.user}
             <form
                 method="post"
@@ -178,7 +181,7 @@
 
     <section class="flex flex-col gap-1">
         <div class="flex flex-row p-1 items-center gap-2">
-            <h2 class="text-lg font-bold grow">Teams to Join</h2>
+            <h2 class="text-2xl font-bold grow text-primary">WINTER HACKATHON 2023 TEAMS</h2>
             {#if filtering}
                 <button
                     class="btn btn-error btn-sm"
@@ -211,7 +214,7 @@
         </div>
         {#if creatingTeam && data.user}
             <form
-                class="flex flex-row px-2 py-1 mb-3 gap-3 bg-base-300 rounded-xl"
+                class="flex flex-row px-2 py-1 mb-3 gap-3 bg-accent rounded-xl"
                 transition:slide
                 method="post"
                 action="?/newTeam"
@@ -229,7 +232,7 @@
             </form>
         {/if}
         {#if filtering}
-            <div class="px-2 py-1 bg-base-300 rounded-xl" transition:slide>
+            <div class="px-2 py-1 bg-accent rounded-xl mb-3" transition:slide>
                 <!-- svelte-ignore a11y-autofocus -->
                 <input
                     type="text"
@@ -245,17 +248,17 @@
             {#each teams.filter((val) => val.name
                     .toLowerCase()
                     .startsWith(filter.toLowerCase())) as team}
-                <div class="card shadow">
-                    <div class="card-body p-4">
-                        <h2 class="card-title">
+                <div class="card bg-accent text-accent-content shadow">
+                    <div class="card-body p-4 gap-0">
+                        <h2 class="card-title mb-2">
                             {team.name}
                             {#if team.members.find((user) => user.userId == data.user?.id)}
                                 <div class="badge badge-success">Joined</div>
                             {/if}
                         </h2>
-                        <h3 class="font-semibold">Team Members</h3>
+                        <h3 class="font-semibold text-primary">TEAM MEMBERS</h3>
                         {#if team.members.length > 0}
-                            <ul class="list-disc ml-4">
+                            <ul class="list-disc ml-4 mb-2">
                                 {#each team.members as member}
                                     <li>
                                         {member.User.name}
