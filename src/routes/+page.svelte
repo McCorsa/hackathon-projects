@@ -219,6 +219,7 @@
                 method="post"
                 action="?/newTeam"
                 use:enhance
+                on:submit|preventDefault={() => creatingTeam = false}
             >
                 <!-- svelte-ignore a11y-autofocus -->
                 <input
