@@ -202,9 +202,7 @@
                         on:click={() => (filtering = true)}>Filter</button
                     >
                 {/if}
-
-            {/if}
-        </div>
+            </div>
         {#if creatingTeam && data.user}
             <form
                 class="flex flex-row px-2 py-1 mb-3 gap-3 bg-accent rounded-xl"
@@ -328,7 +326,7 @@
                     </div>
                 {/each}
             </div>
-        </section>
+        {/if}
     </main>
 {:else}
     <main class="h-screen flex flex-col items-center justify-center gap-2 text-center p-4">
