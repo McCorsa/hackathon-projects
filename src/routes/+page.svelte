@@ -202,21 +202,39 @@
                         on:click={() => (filtering = true)}>Filter</button
                     >
                 {/if}
-                {#if data.user}
-                    {#if creatingTeam}
-                        <button
-                            class="btn btn-error btn-sm"
-                            on:click={() => (creatingTeam = false)}>Cancel</button
-                        >
-                    {:else}
-                        <button
-                            class="btn btn-success btn-sm"
-                            on:click={() => {
-                                creatingTeam = true;
-                            }}>New Team</button
-                        >
-                    {/if}
-                {/if}
+
+            {/if}
+        </div>
+        {#if creatingTeam && data.user}
+            <form
+                class="flex flex-row px-2 py-1 mb-3 gap-3 bg-accent rounded-xl"
+                transition:slide
+                method="post"
+                action="?/newTeam"
+                use:enhance
+                on:submit|preventDefault={() => creatingTeam = false}
+            >
+                <!-- svelte-ignore a11y-autofocus -->
+                <input
+                    class="input grow"
+                    placeholder="New Team Name"
+                    id="name"
+                    name="name"
+                    autofocus
+                />
+                <button class="btn btn-success" type="submit">Create</button>
+            </form>
+        {/if}
+        {#if filtering}
+            <div class="px-2 py-1 bg-accent rounded-xl mb-3" transition:slide>
+                <!-- svelte-ignore a11y-autofocus -->
+                <input
+                    type="text"
+                    class="input input-bordered w-full"
+                    placeholder="Filter"
+                    bind:value={filter}
+                    autofocus
+                />
             </div>
             {#if creatingTeam && data.user}
                 <form
