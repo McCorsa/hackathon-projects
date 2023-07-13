@@ -16,11 +16,11 @@ This site will allow teams at the 2023 Code Network Winter Hackathon to register
 - [x] Sign-in and -out (when2meet style)
 - [x] Create team
 - [x] Join and leave team
-- [ ] UX changes: required fields, unique fields
-- [ ] Progressive enhancement to joining and leaving team
-- [ ] Host this website (Vercel?)
-- [ ] Finalise theming
-- [ ] Set up a hosted database
+- [x] UX changes: required fields, unique fields
+- [x] Progressive enhancement to joining and leaving team
+- [x] Host this website (Vercel?)
+- [x] Finalise theming
+- [x] Set up a hosted database
 
 ## Running the Project
 
