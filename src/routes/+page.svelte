@@ -197,7 +197,7 @@
                     on:click={() => (filtering = true)}>Filter</button
                 >
             {/if}
-            {#if data.user}
+            <!-- {#if data.user}
                 {#if creatingTeam}
                     <button
                         class="btn btn-error btn-sm"
@@ -211,7 +211,7 @@
                         }}>New Team</button
                     >
                 {/if}
-            {/if}
+            {/if} -->
         </div>
         {#if creatingTeam && data.user}
             <form
@@ -272,7 +272,7 @@
                             <p>Team is empty.</p>
                         {/if}
                         <div class="card-actions">
-                            {#if data.user}
+                            <!-- {#if data.user}
                                 {#if team.members.find((user) => user.userId == data.user?.id)}
                                     <form method="post" action="?/leaveTeam">
                                         <input
@@ -316,7 +316,7 @@
                                         >
                                     </form>
                                 {/if}
-                            {/if}
+                            {/if} -->
                         </div>
                     </div>
                 </div>
