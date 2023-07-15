@@ -83,7 +83,7 @@
 
 {#if !data.user}
     <p
-        class="w-screen bg-info text-info-content font-bold text-sm text-center p-1"
+        class="w-screen bg-error text-error-content font-bold text-sm text-center p-1"
     >
         No more accounts can be created at this time. To join a team, please see the executive team.
     </p>
