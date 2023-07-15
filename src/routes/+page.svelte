@@ -63,6 +63,7 @@
                     class="input input-sm"
                     placeholder="Name"
                     disabled={signingIn}
+                    required
                 />
                 <input
                     type="password"
@@ -228,6 +229,7 @@
                     id="name"
                     name="name"
                     autofocus
+                    required
                 />
                 <button class="btn btn-success" type="submit">Create</button>
             </form>
