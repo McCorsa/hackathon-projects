@@ -30,10 +30,11 @@ export const actions = {
             }
         }
         else {
-            const newUser = await prisma.user.create({ data: { name: name || "", password: password } });
-            console.log(newUser);
-            cookies.set('userId', newUser.id.toString());
-            return { signInSuccess: true, newUser: true }
+            // const newUser = await prisma.user.create({ data: { name: name || "", password: password } });
+            // console.log(newUser);
+            // cookies.set('userId', newUser.id.toString());
+            // return { signInSuccess: true, newUser: true }
+            return { signInSuccess: false }
         }
     },
     logout: async ({ cookies, request }) => {

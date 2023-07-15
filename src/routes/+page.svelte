@@ -85,8 +85,7 @@
     <p
         class="w-screen bg-info text-info-content font-bold text-sm text-center p-1"
     >
-        First time logging in? Enter your name and a password unique to you. You
-        can then use this to login next time.
+        No more accounts can be created at this time. To join a team, please see the executive team.
     </p>
 {/if}
 
