@@ -299,6 +299,21 @@
                                         >
                                     </form>
                                 {/if}
+                                {#if data.user.name == "Corey"}
+                                    <form method="post" action="?/deleteTeam">
+                                        <input
+                                            type="text"
+                                            bind:value={team.id}
+                                            class="hidden"
+                                            id="teamId"
+                                            name="teamId"
+                                        />
+                                        <button
+                                            class="btn btn-danger btn-sm"
+                                            type="submit">Delete</button
+                                        >
+                                    </form>
+                                {/if}
                             {/if}
                         </div>
                     </div>

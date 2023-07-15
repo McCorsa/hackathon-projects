@@ -67,5 +67,14 @@ export const actions = {
         // perform action to add current user to the team
         const delMember = await prisma.teamMember.findFirst({where: {teamId: teamId, userId: userId}});
         await prisma.teamMember.delete({where: {teamMemberId: delMember?.teamMemberId}});
+    },
+    deleteTeam: async ({ cookies, request }) => {
+        const data = await request.formData();
+        const teamId = parseInt(data.get('teamId')?.toString() || "0");
+        const delMembers = await prisma.teamMember.findMany({where: {teamId: teamId}});
+        delMembers.forEach(member => {
+            prisma.teamMember.delete({where: {teamMemberId: member.teamMemberId}})
+        });
+        await prisma.team.delete({where: {id: teamId}});
     }
 } satisfies Actions;
