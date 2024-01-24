@@ -2,6 +2,9 @@
 
 This site will allow teams at the 2023 Code Network Winter Hackathon to register and join their teams. This will provide a level of accountability for everyone involved and will streamline check-ins.
 
+## Repo Update 25/01/2024
+This repo has been archived as of today. This is as I plan to create a newer version of this site to handle team registrations and other related forms for the 2024 Hackathon.
+
 ## State of the Repo
 Please note that several sections of the code (namely, the +page.svelte and +page.server.ts files) have been largely commented out as part of the decomissioning of this website. If you are interested in testing it out, uncomment these sections as needed or look back through the older versions of this website through commit history.
 
